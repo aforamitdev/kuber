@@ -1,10 +1,13 @@
 import {
   BellIcon,
+  BuildingsIcon,
   ChartBarIcon,
   ChatCircleTextIcon,
+  CoinsIcon,
   CreditCardIcon,
   FilePlusIcon,
   FlagIcon,
+  HandCoinsIcon,
   HouseIcon,
   InfoIcon,
   LifebuoyIcon,
@@ -20,8 +23,13 @@ import {
   TranslateIcon,
   TrendUpIcon,
   WalletIcon,
+  XIcon,
 } from '@phosphor-icons/react'
+import { useAtomValue, useSetAtom } from 'jotai'
 import { SidebarItem } from '../ui/SidebarItem'
+import { sessionAtom } from '@/state/auth'
+import { unreadNotificationsCountAtom } from '@/state/atoms'
+import { cn } from '@/shadeui/lib/utils'
 
 type GoalRow = { id: string; label: string; pct: number; color: string }
 
@@ -69,14 +77,44 @@ function Section({ title, children }: { title?: string; children: React.ReactNod
   )
 }
 
-export function Sidebar() {
+type SidebarProps = {
+  open: boolean
+  onClose: () => void
+}
+
+export function Sidebar({ open, onClose }: SidebarProps) {
+  const setSession = useSetAtom(sessionAtom)
+  const unread = useAtomValue(unreadNotificationsCountAtom)
   return (
-    <aside className="flex h-screen w-64 shrink-0 flex-col border-r border-border bg-sidebar text-sidebar-foreground">
+    <>
+      <div
+        className={cn(
+          'fixed inset-0 z-30 bg-black/40 transition-opacity md:hidden',
+          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
+        )}
+        onClick={onClose}
+        aria-hidden
+      />
+      <aside
+        className={cn(
+          'fixed inset-y-0 left-0 z-40 flex h-screen w-64 shrink-0 flex-col border-r border-border bg-sidebar text-sidebar-foreground transition-transform duration-200',
+          'md:static md:translate-x-0',
+          open ? 'translate-x-0' : '-translate-x-full',
+        )}
+      >
       <div className="flex items-center gap-2 px-4 py-4">
         <span className="grid size-7 place-items-center bg-foreground text-background">
           <SparkleIcon weight="fill" className="size-4" />
         </span>
         <span className="font-heading text-sm font-medium">Nyabung</span>
+        <button
+          type="button"
+          onClick={onClose}
+          className="ml-auto text-muted-foreground hover:text-foreground md:hidden"
+          aria-label="Close menu"
+        >
+          <XIcon className="size-4" />
+        </button>
       </div>
 
       <div className="grid gap-0.5 px-2">
@@ -98,14 +136,20 @@ export function Sidebar() {
           <SidebarItem icon={<WalletIcon />}     label="Wallet"     to="/accounts" />
           <SidebarItem icon={<CreditCardIcon />} label="Card"       to="/cards" />
           <SidebarItem icon={<TrendUpIcon />}    label="Investment" to="/stocks-portfolio" />
+          <SidebarItem icon={<BuildingsIcon />}  label="Assets"     to="/assets" />
+          <SidebarItem icon={<CoinsIcon />}      label="Income source" to="/income-sources" />
+          <SidebarItem icon={<HandCoinsIcon />}  label="Loans"      to="/loans" />
           <SidebarItem icon={<SwapIcon />}       label="Transaction" />
           <SidebarItem
             icon={<BellIcon />}
-            label="Notification"
+            label="Notifications"
+            to="/notifications"
             trailing={
-              <span className="grid h-4 min-w-4 place-items-center bg-rose-500 px-1 text-[10px] font-medium text-white">
-                10
-              </span>
+              unread > 0 ? (
+                <span className="grid h-4 min-w-4 place-items-center bg-rose-500 px-1 text-[10px] font-medium text-white">
+                  {unread}
+                </span>
+              ) : undefined
             }
           />
           <SidebarItem icon={<PiggyBankIcon />} label="Saving" />
@@ -140,8 +184,9 @@ export function Sidebar() {
       <div className="grid gap-0.5 border-t border-border px-2 py-3">
         <SidebarItem icon={<SunIcon />}       label="Theme"    trailing={<span className="text-xs text-muted-foreground">Light mode ›</span>} />
         <SidebarItem icon={<TranslateIcon />} label="Language" trailing={<span className="text-xs text-muted-foreground">English ›</span>} />
-        <SidebarItem icon={<SignOutIcon />}   label="Logout" />
+        <SidebarItem icon={<SignOutIcon />}   label="Logout" onClick={() => setSession(null)} />
       </div>
-    </aside>
+      </aside>
+    </>
   )
 }

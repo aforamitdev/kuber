@@ -1,0 +1,10 @@
+{
+  "name": "kubera-workspace",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "pnpm --dir kubera dev",
+    "build": "pnpm --dir kubera build",
+    "tauri": "./kubera/node_modules/.bin/tauri"
+  }
+}

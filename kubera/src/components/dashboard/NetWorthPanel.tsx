@@ -19,10 +19,10 @@ export function NetWorthPanel() {
   const deltaAbs = (lastTotal - prevTotal) * (net / lastTotal)
 
   return (
-    <Card>
+    <Card className="flex h-full flex-col">
       <div className="flex items-start justify-between gap-6 p-5 pb-2">
         <div>
-          <div className="text-xs text-muted-foreground">Total Balance</div>
+          <div className="text-xs text-muted-foreground">Total Worth</div>
           <div className="mt-1 font-heading text-4xl">{format(net)}</div>
           <div className="mt-1 text-xs font-medium text-emerald-600">
             +{format(Math.abs(deltaAbs))} ({deltaPct.toFixed(2)}%) vs last month
@@ -36,7 +36,7 @@ export function NetWorthPanel() {
           <Button iconRight={<PlusIcon className="size-3.5" />}>Top up</Button>
         </div>
       </div>
-      <div className="px-2 pb-2">
+      <div className="flex-1 px-2 pb-2">
         <LineChart
           labels={series.map((p) => p.month)}
           series={[

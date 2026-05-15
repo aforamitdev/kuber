@@ -1,4 +1,6 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
+import { useAtomValue } from 'jotai'
+import { sessionAtom } from './auth'
 
 type Currency = { code: string; locale: string; symbol: string }
 
@@ -37,20 +39,21 @@ function buildFormatter(code: string, notation: 'standard' | 'compact' = 'standa
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [code, setCode] = useState<string>('INR')
+  const session = useAtomValue(sessionAtom)
 
   const value = useMemo<AppContextValue>(() => {
     const currency = CURRENCIES[code] ?? CURRENCIES.INR
     const fmt = buildFormatter(currency.code)
     const compact = buildFormatter(currency.code, 'compact')
     return {
-      user: { name: 'Uzumaki Kusina', email: 'uzumakikusina@gmail.com' },
+      user: session ?? { name: 'Guest', email: '' },
       currency,
       setCurrencyCode: (c) => setCode(c),
       format: (n) => fmt.format(n),
       formatCompact: (n) => compact.format(n),
       formatIn: (n, c) => buildFormatter(c).format(n),
     }
-  }, [code])
+  }, [code, session])
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }
