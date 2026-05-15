@@ -15,7 +15,7 @@ const variants: Record<Variant, string> = {
 
 const sizes: Record<Size, string> = {
   sm: 'h-8 px-3 text-xs',
-  md: 'h-9 px-4 text-sm',
+  md: 'h-9 px-3.5 text-sm',
 }
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -37,7 +37,7 @@ export function Button({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center gap-1.5 rounded-full font-medium transition disabled:opacity-50',
+        'inline-flex items-center justify-center gap-1.5 font-medium transition disabled:opacity-50',
         variants[variant],
         sizes[size],
         className,

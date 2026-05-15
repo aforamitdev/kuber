@@ -100,6 +100,18 @@ export type Asset = {
   note?: string
 }
 
+export type PriceMode = 'exact' | 'approx'
+
+export type AssetValuation = {
+  id: string
+  assetId: string
+  dateISO: string
+  value: number
+  mode: PriceMode
+  tolerance?: number
+  note?: string
+}
+
 export type Transaction = {
   id: string
   payee: string
@@ -241,6 +253,27 @@ export const assetsAtom = atom<Asset[]>([
   { id: 'as3', name: 'Goa Plot',         kind: 'land',        currency: 'INR', value: 8_750_000,  appreciating: true,  note: 'Goa' },
   { id: 'as4', name: 'Honda City',       kind: 'car',         currency: 'INR', value: 1_200_000,  appreciating: false },
   { id: 'as5', name: 'Wedding Jewelry',  kind: 'gold',        currency: 'INR', value: 4_500_000,  appreciating: true },
+])
+
+export const assetValuationsAtom = atom<AssetValuation[]>([
+  { id: 'av-as1-1', assetId: 'as1', dateISO: '2024-05-01', value: 28_000_000, mode: 'approx', tolerance: 800_000, note: 'Broker estimate' },
+  { id: 'av-as1-2', assetId: 'as1', dateISO: '2025-05-01', value: 30_500_000, mode: 'approx', tolerance: 600_000 },
+  { id: 'av-as1-3', assetId: 'as1', dateISO: '2026-05-01', value: 32_500_000, mode: 'approx', tolerance: 500_000 },
+
+  { id: 'av-as2-1', assetId: 'as2', dateISO: '2025-01-15', value: 17_400_000, mode: 'approx', tolerance: 400_000 },
+  { id: 'av-as2-2', assetId: 'as2', dateISO: '2026-01-15', value: 18_200_000, mode: 'approx', tolerance: 400_000 },
+
+  { id: 'av-as3-1', assetId: 'as3', dateISO: '2024-12-01', value: 8_000_000,  mode: 'exact' },
+  { id: 'av-as3-2', assetId: 'as3', dateISO: '2026-02-01', value: 8_750_000,  mode: 'approx', tolerance: 300_000 },
+
+  { id: 'av-as4-1', assetId: 'as4', dateISO: '2023-04-01', value: 1_650_000,  mode: 'exact' },
+  { id: 'av-as4-2', assetId: 'as4', dateISO: '2024-04-01', value: 1_440_000,  mode: 'approx', tolerance: 60_000 },
+  { id: 'av-as4-3', assetId: 'as4', dateISO: '2025-04-01', value: 1_300_000,  mode: 'approx', tolerance: 50_000 },
+  { id: 'av-as4-4', assetId: 'as4', dateISO: '2026-04-01', value: 1_200_000,  mode: 'approx', tolerance: 40_000 },
+
+  { id: 'av-as5-1', assetId: 'as5', dateISO: '2024-10-15', value: 3_800_000,  mode: 'approx', tolerance: 150_000 },
+  { id: 'av-as5-2', assetId: 'as5', dateISO: '2025-10-15', value: 4_200_000,  mode: 'approx', tolerance: 150_000 },
+  { id: 'av-as5-3', assetId: 'as5', dateISO: '2026-04-15', value: 4_500_000,  mode: 'approx', tolerance: 120_000 },
 ])
 
 export const transactionsAtom = atom<Transaction[]>([

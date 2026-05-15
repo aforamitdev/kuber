@@ -6,6 +6,7 @@ import { CardsPage } from './pages/CardsPage'
 import { AccountsPage } from './pages/AccountsPage'
 import { AccountDetailPage } from './pages/AccountDetailPage'
 import { AssetsPage } from './pages/AssetsPage'
+import { AssetDetailPage } from './pages/AssetDetailPage'
 import { StocksPage } from './pages/StocksPage'
 import { IncomeSourcesPage } from './pages/IncomeSourcesPage'
 import { LoansPage } from './pages/LoansPage'
@@ -38,6 +39,7 @@ function Routed() {
         <Route path="/accounts/:id" element={<AccountDetailPage />} />
         <Route path="/stocks-portfolio" element={<StocksPage />} />
         <Route path="/assets" element={<AssetsPage />} />
+        <Route path="/assets/:id" element={<AssetDetailPage />} />
         <Route path="/income-sources" element={<IncomeSourcesPage />} />
         <Route path="/loans" element={<LoansPage />} />
         <Route path="/loans/:id" element={<LoanDetailPage />} />

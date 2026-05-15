@@ -15,6 +15,7 @@ export function SplitTiles() {
       <StatTile
         icon={<ArrowDownIcon className="size-4" />}
         label="Movable"
+        tone="emerald"
         value={format(movable)}
         delta={<Delta value={12.73} />}
         hint={`Liquid wealth · ${formatCompact(movable)}`}
@@ -22,6 +23,7 @@ export function SplitTiles() {
       <StatTile
         icon={<ArrowUpIcon className="size-4" />}
         label="Non-movable"
+        tone="violet"
         value={format(nonMovable)}
         delta={<Delta value={-3.19} />}
         hint={`Real estate · ${formatCompact(nonMovable)}`}

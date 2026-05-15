@@ -68,7 +68,11 @@ function Section({ title, children }: { title?: string; children: React.ReactNod
   return (
     <div className="grid gap-0.5">
       {title && (
-        <div className="px-2.5 pb-1 pt-3 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+        <div className="flex items-center gap-2 px-2.5 pb-1.5 pt-4 text-[11px] font-medium text-muted-foreground/80">
+          <span
+            aria-hidden
+            className="inline-block size-2 border border-dashed border-muted-foreground/50"
+          />
           {title}
         </div>
       )}
@@ -102,11 +106,11 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           open ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-      <div className="flex items-center gap-2 px-4 py-4">
+      <div className="flex items-center gap-2.5 px-4 py-4">
         <span className="grid size-7 place-items-center bg-foreground text-background">
-          <SparkleIcon weight="fill" className="size-4" />
+          <SparkleIcon weight="fill" className="size-3.5" />
         </span>
-        <span className="font-heading text-sm font-medium">Nyabung</span>
+        <span className="font-heading text-[15px] font-semibold tracking-tight">Nyabung</span>
         <button
           type="button"
           onClick={onClose}

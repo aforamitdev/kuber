@@ -22,7 +22,7 @@ export function MonthlyIncomePanel() {
             {active.length} active {active.length === 1 ? 'source' : 'sources'}
           </div>
         </div>
-        <span className="inline-flex size-8 items-center justify-center bg-muted text-foreground">
+        <span className="inline-flex size-8 items-center justify-center bg-emerald-50 text-emerald-600">
           <TrendUpIcon className="size-4" />
         </span>
       </div>

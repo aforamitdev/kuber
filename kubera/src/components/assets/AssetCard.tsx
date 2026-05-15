@@ -1,4 +1,5 @@
 import { ArrowDownIcon, ArrowUpIcon, TrashIcon } from '@phosphor-icons/react'
+import { useNavigate } from 'react-router-dom'
 import { EntityCard, type EntityCardTag } from '../ui/EntityCard'
 import { assetKindIcon } from '@/lib/icons'
 import { useApp } from '@/state/AppContext'
@@ -12,6 +13,7 @@ type Props = {
 
 export function AssetCard({ asset, onRemove }: Props) {
   const { formatIn } = useApp()
+  const navigate = useNavigate()
   const Icon = assetKindIcon(asset.kind)
 
   const tags: EntityCardTag[] = [
@@ -39,6 +41,7 @@ export function AssetCard({ asset, onRemove }: Props) {
       subtext={asset.note}
       tags={tags}
       value={formatIn(asset.value, asset.currency)}
+      onClick={() => navigate(`/assets/${asset.id}`)}
       actions={
         onRemove && (
           <button

@@ -119,34 +119,40 @@ export function LoanDetailPage() {
         <StatTile
           icon={<WalletIcon className="size-4" weight="duotone" />}
           label="Outstanding"
+          tone="rose"
           value={formatIn(loan.balance, loan.currency)}
           hint={`${paidPct}% paid`}
         />
         <StatTile
           icon={<CoinsIcon className="size-4" weight="duotone" />}
           label="Principal"
+          tone="sky"
           value={formatIn(loan.principal, loan.currency)}
         />
         <StatTile
           icon={<CoinsIcon className="size-4" weight="duotone" />}
           label="Paid"
+          tone="emerald"
           value={formatIn(paid, loan.currency)}
         />
         <StatTile
           icon={<ReceiptIcon className="size-4" weight="duotone" />}
           label="EMI"
+          tone="amber"
           value={formatIn(loan.emi, loan.currency)}
           hint="per month"
         />
         <StatTile
           icon={<PercentIcon className="size-4" weight="duotone" />}
           label="Interest rate"
+          tone="violet"
           value={`${loan.rate.toFixed(2)}%`}
           hint="per annum"
         />
         <StatTile
           icon={<CalendarIcon className="size-4" weight="duotone" />}
           label="Payoff in"
+          tone="indigo"
           value={payoffLabel}
           hint={
             remainingMonths > 0

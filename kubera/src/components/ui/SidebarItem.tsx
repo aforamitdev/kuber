@@ -13,9 +13,9 @@ type Props = {
   onClick?: () => void
 }
 
-const base = 'group flex w-full items-center gap-2.5 px-2.5 py-1.5 text-left text-sm transition'
-const inactive = 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
-const activeCls = 'bg-muted text-foreground'
+const base = 'group flex w-full items-center gap-2.5 px-2.5 py-2 text-left text-[13px] transition'
+const inactive = 'text-muted-foreground hover:bg-muted hover:text-foreground'
+const activeCls = 'bg-background border border-border text-foreground font-medium'
 
 function Body({
   icon,

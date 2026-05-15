@@ -20,7 +20,7 @@ export function ExpenseInsightPanel() {
             {top && ` · ${top.name} leads at ${top.pct}%`}
           </div>
         </div>
-        <span className="inline-flex size-8 items-center justify-center bg-muted text-foreground">
+        <span className="inline-flex size-8 items-center justify-center bg-rose-50 text-rose-600">
           <ChartPieSliceIcon className="size-4" />
         </span>
       </div>
