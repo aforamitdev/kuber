@@ -2,14 +2,15 @@ import { useMemo } from 'react'
 import { useAtomValue } from 'jotai'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeftIcon, CalendarIcon, CoinsIcon, PercentIcon, ReceiptIcon, WalletIcon } from '@phosphor-icons/react'
-import { Badge } from '../components/ui/Badge'
-import { Card } from '../components/ui/Card'
-import { ChartCard } from '../components/ui/ChartCard'
-import { PageHeader } from '../components/ui/PageHeader'
-import { StatTile } from '../components/ui/StatTile'
-import { LOAN_KIND_LABEL } from '../components/loans/constants'
-import { buildSchedule } from '../components/loans/amortization'
+import { Badge } from '@/components/ui/Badge'
+import { Card } from '@/components/ui/Card'
+import { ChartCard } from '@/components/ui/ChartCard'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { StatTile } from '@/components/ui/StatTile'
+import { LOAN_KIND_LABEL } from '@/components/loans/constants'
+import { buildSchedule } from '@/components/loans/amortization'
 import { loanKindIcon } from '@/lib/icons'
+import { LOAN_KIND_TONE, TONE_CLASS } from '@/lib/tones'
 import { MONTHS, loansAtom } from '@/state/atoms'
 import { useApp } from '@/state/AppContext'
 
@@ -96,7 +97,7 @@ export function LoanDetailPage() {
       <PageHeader
         title={
           <span className="inline-flex items-center gap-2">
-            <span className="grid size-8 place-items-center bg-muted">
+            <span className={`grid size-8 place-items-center ${TONE_CLASS[LOAN_KIND_TONE[loan.kind]]}`}>
               <Icon weight="duotone" className="size-4" />
             </span>
             {loan.name}

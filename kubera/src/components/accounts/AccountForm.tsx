@@ -1,31 +1,48 @@
-import { useState } from 'react'
-import { Button } from '../ui/Button'
-import { FormShell } from '../ui/FormShell'
-import { Field, Input, Select } from '../ui/Input'
-import { CURRENCY_CODES } from '@/state/AppContext'
-import type { Account } from '@/state/atoms'
+import { useState } from "react";
+import { Button } from "../ui/Button";
+import { FormShell } from "../ui/FormShell";
+import { Field, Input, Select } from "../ui/Input";
+import { CURRENCY_CODES } from "@/state/AppContext";
+import { createAccount, type AccountInput } from "@/api/account";
+import { CodaLogoIcon } from "@phosphor-icons/react/dist/ssr";
 
-type FormState = { name: string; institution: string; currency: string; balance: string }
-const empty: FormState = { name: '', institution: '', currency: 'INR', balance: '' }
+type FormState = {
+  name: string;
+  institution: string;
+  currency: string;
+  balance: string;
+};
+const empty: FormState = {
+  name: "",
+  institution: "",
+  currency: "INR",
+  balance: "",
+};
 
 type Props = {
-  onSubmit: (a: Account) => void
-  onCancel: () => void
-}
+  onSubmit: (input: AccountInput) => void;
+  onCancel: () => void;
+};
 
 export function AccountForm({ onSubmit, onCancel }: Props) {
-  const [f, setF] = useState<FormState>(empty)
+  const [f, setF] = useState<FormState>(empty);
 
   function submit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!f.name.trim()) return
-    onSubmit({
-      id: `a${Date.now()}`,
-      name: f.name.trim(),
-      institution: f.institution.trim() || 'Unknown',
+    e.preventDefault();
+    if (!f.name.trim()) return;
+    createAccount({
+      name: f.name,
+      balance: parseFloat(f.balance),
       currency: f.currency,
-      balance: Number(f.balance) || 0,
+      institution: f.institution,
     })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((ress) => {
+        console.log(ress, "ERRPE");
+      });
+    console.log(f);
   }
 
   return (
@@ -35,22 +52,40 @@ export function AccountForm({ onSubmit, onCancel }: Props) {
       onCancel={onCancel}
       footer={
         <>
-          <Button type="button" variant="ghost" onClick={onCancel}>Cancel</Button>
-          <Button type="submit" variant="primary">Add account</Button>
+          <Button type="button" variant="ghost" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button type="submit" variant="primary">
+            Add account
+          </Button>
         </>
       }
     >
       <div className="grid gap-3 sm:grid-cols-2">
         <Field label="Account name">
-          <Input value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} placeholder="e.g. Joint savings" required />
+          <Input
+            value={f.name}
+            onChange={(e) => setF({ ...f, name: e.target.value })}
+            placeholder="e.g. Joint savings"
+            required
+          />
         </Field>
         <Field label="Institution">
-          <Input value={f.institution} onChange={(e) => setF({ ...f, institution: e.target.value })} placeholder="e.g. HDFC" />
+          <Input
+            value={f.institution}
+            onChange={(e) => setF({ ...f, institution: e.target.value })}
+            placeholder="e.g. HDFC"
+          />
         </Field>
         <Field label="Currency">
-          <Select value={f.currency} onChange={(e) => setF({ ...f, currency: e.target.value })}>
+          <Select
+            value={f.currency}
+            onChange={(e) => setF({ ...f, currency: e.target.value })}
+          >
             {CURRENCY_CODES.map((c) => (
-              <option key={c} value={c}>{c}</option>
+              <option key={c} value={c}>
+                {c}
+              </option>
             ))}
           </Select>
         </Field>
@@ -58,11 +93,13 @@ export function AccountForm({ onSubmit, onCancel }: Props) {
           <Input
             inputMode="numeric"
             value={f.balance}
-            onChange={(e) => setF({ ...f, balance: e.target.value.replace(/[^0-9.]/g, '') })}
+            onChange={(e) =>
+              setF({ ...f, balance: e.target.value.replace(/[^0-9.]/g, "") })
+            }
             placeholder="0"
           />
         </Field>
       </div>
     </FormShell>
-  )
+  );
 }

@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useAtom, useAtomValue } from 'jotai'
 import { useNavigate } from 'react-router-dom'
-import { PlusIcon } from '@phosphor-icons/react'
-import { LoanForm } from '../components/loans/LoanForm'
-import { LoansGrid } from '../components/loans/LoansGrid'
-import { Button } from '../components/ui/Button'
-import { PageHeader } from '../components/ui/PageHeader'
+import { HandCoinsIcon, PlusIcon } from '@phosphor-icons/react'
+import { LoanForm } from '@/components/loans/LoanForm'
+import { LoansGrid } from '@/components/loans/LoansGrid'
+import { Button } from '@/components/ui/Button'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { TONE_CLASS } from '@/lib/tones'
 import { loanTotalAtom, loansAtom, monthlyEmiTotalAtom } from '@/state/atoms'
 import { useApp } from '@/state/AppContext'
 
@@ -23,7 +24,14 @@ export function LoansPage() {
   return (
     <>
       <PageHeader
-        title="Loans"
+        title={
+          <span className="inline-flex items-center gap-2">
+            <span className={`grid size-8 place-items-center ${TONE_CLASS.rose}`}>
+              <HandCoinsIcon className="size-4" weight="duotone" />
+            </span>
+            Loans
+          </span>
+        }
         description={`${loans.length} loans · ${active} active · ${closed} closed · ${format(outstanding)} outstanding · ${format(emiTotal)}/mo EMI`}
         actions={
           !open && (

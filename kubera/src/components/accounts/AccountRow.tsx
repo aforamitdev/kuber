@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom'
-import { BankIcon, CaretRightIcon } from '@phosphor-icons/react'
-import { Card } from '../ui/Card'
-import { useApp } from '@/state/AppContext'
-import type { Account } from '@/state/atoms'
+import { Link } from "react-router-dom";
+import { BankIcon, CaretRightIcon } from "@phosphor-icons/react";
+import { Card } from "../ui/Card";
+import { useApp } from "@/state/AppContext";
+import type { Account } from "@/state/atoms";
 
-type Props = { account: Account }
+type Props = { account: Account };
 
 export function AccountRow({ account }: Props) {
-  const { formatIn } = useApp()
+  const { formatIn } = useApp();
   return (
     <Link to={`/accounts/${account.id}`}>
       <Card className="transition hover:bg-muted/50">
@@ -21,10 +21,12 @@ export function AccountRow({ account }: Props) {
               {account.institution} · {account.currency}
             </div>
           </div>
-          <div className="font-mono text-base">{formatIn(account.balance, account.currency)}</div>
+          <div className="font-mono text-base">
+            {formatIn(account.balance, account.currency)}
+          </div>
           <CaretRightIcon className="size-4 text-muted-foreground" />
         </div>
       </Card>
     </Link>
-  )
+  );
 }

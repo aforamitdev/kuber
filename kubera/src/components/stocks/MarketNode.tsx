@@ -6,6 +6,7 @@ import { Card } from '../ui/Card'
 import { PortfolioForm } from './PortfolioForm'
 import { PortfolioRow } from './PortfolioRow'
 import { marketIcon } from '@/lib/icons'
+import { TONE_CLASS, rotatingTone } from '@/lib/tones'
 import type { Market, Portfolio } from '@/state/atoms'
 import { useApp } from '@/state/AppContext'
 
@@ -22,6 +23,7 @@ export function MarketNode({ market, portfolios, onAddPortfolio }: Props) {
 
   const total = portfolios.reduce((s, p) => s + p.totalValue, 0)
   const MIcon = marketIcon(market.icon)
+  const tone = rotatingTone(market.id)
 
   return (
     <Card>
@@ -36,7 +38,7 @@ export function MarketNode({ market, portfolios, onAddPortfolio }: Props) {
           ) : (
             <CaretRightIcon className="size-4 text-muted-foreground" />
           )}
-          <span className="grid size-8 place-items-center bg-muted">
+          <span className={`grid size-8 place-items-center ${TONE_CLASS[tone]}`}>
             <MIcon weight="duotone" className="size-4" />
           </span>
           <span className="font-heading text-base">{market.name}</span>

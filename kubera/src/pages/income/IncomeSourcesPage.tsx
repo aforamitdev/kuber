@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useAtom, useAtomValue } from 'jotai'
-import { PlusIcon } from '@phosphor-icons/react'
-import { IncomeSourceForm } from '../components/income/IncomeSourceForm'
-import { IncomeSourcesGrid } from '../components/income/IncomeSourcesGrid'
-import { Button } from '../components/ui/Button'
-import { PageHeader } from '../components/ui/PageHeader'
+import { CoinsIcon, PlusIcon } from '@phosphor-icons/react'
+import { IncomeSourceForm } from '@/components/income/IncomeSourceForm'
+import { IncomeSourcesGrid } from '@/components/income/IncomeSourcesGrid'
+import { Button } from '@/components/ui/Button'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { TONE_CLASS } from '@/lib/tones'
 import { incomeSourcesAtom, monthlyIncomeTotalAtom } from '@/state/atoms'
 import { useApp } from '@/state/AppContext'
 
@@ -20,7 +21,14 @@ export function IncomeSourcesPage() {
   return (
     <>
       <PageHeader
-        title="Income sources"
+        title={
+          <span className="inline-flex items-center gap-2">
+            <span className={`grid size-8 place-items-center ${TONE_CLASS.amber}`}>
+              <CoinsIcon className="size-4" weight="duotone" />
+            </span>
+            Income sources
+          </span>
+        }
         description={`${sources.length} sources · ${active} active · ${paused} paused · ${format(monthlyTotal)}/mo`}
         actions={
           !open && (

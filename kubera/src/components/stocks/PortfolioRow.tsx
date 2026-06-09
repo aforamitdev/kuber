@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAtomValue } from 'jotai'
 import { StockSplitDialog } from './StockSplitDialog'
 import { portfolioIcon } from '@/lib/icons'
+import { TONE_CLASS, rotatingTone } from '@/lib/tones'
 import { stocksAtom, type Portfolio } from '@/state/atoms'
 import { useApp } from '@/state/AppContext'
 
@@ -17,12 +18,13 @@ export function PortfolioRow({ portfolio, currency }: Props) {
 
   const mine = stocks.filter((s) => s.portfolioId === portfolio.id)
   const PIcon = portfolioIcon(portfolio.icon)
+  const tone = rotatingTone(portfolio.id, 3)
 
   return (
     <>
       <div className="flex items-center gap-3 border-t border-border px-4 py-3">
         <div className="flex flex-1 items-center gap-2">
-          <span className="grid size-7 place-items-center bg-muted">
+          <span className={`grid size-7 place-items-center ${TONE_CLASS[tone]}`}>
             <PIcon weight="duotone" className="size-4" />
           </span>
           <span className="text-sm font-medium">{portfolio.name}</span>

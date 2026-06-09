@@ -2,13 +2,17 @@ import {
   BellIcon,
   BuildingsIcon,
   CaretDownIcon,
+  ChartBarIcon,
   CoinsIcon,
   CreditCardIcon,
+  FlowArrowIcon,
   GearSixIcon,
   GiftIcon,
   HandCoinsIcon,
   HouseIcon,
   ListIcon,
+  RoadHorizonIcon,
+  SwapIcon,
   TrendUpIcon,
   WalletIcon,
   type Icon,
@@ -31,6 +35,10 @@ const ROUTES: Array<{ match: RegExp; label: string; icon: Icon }> = [
   { match: /^\/income-sources/, label: 'Income source', icon: CoinsIcon },
   { match: /^\/loans/, label: 'Loans', icon: HandCoinsIcon },
   { match: /^\/notifications/, label: 'Notifications', icon: BellIcon },
+  { match: /^\/roadmap/, label: 'Roadmap', icon: RoadHorizonIcon },
+  { match: /^\/cashflow/, label: 'Cash flow', icon: ChartBarIcon },
+  { match: /^\/workflow/, label: 'Workflow',  icon: FlowArrowIcon },
+  { match: /^\/transactions/, label: 'Transactions', icon: SwapIcon },
 ]
 
 function resolveTitle(pathname: string) {

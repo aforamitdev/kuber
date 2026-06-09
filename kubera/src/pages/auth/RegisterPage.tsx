@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { Button } from '../components/ui/Button'
-import { Field, Input } from '../components/ui/Input'
+import { Button } from '@/components/ui/Button'
+import { Field, Input } from '@/components/ui/Input'
 import { accountsRegistryAtom, hashPassword, isAuthedAtom, sessionAtom } from '@/state/auth'
 import { AuthShell } from './LoginPage'
 

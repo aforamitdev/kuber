@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useAtom } from 'jotai'
 import { PlusIcon } from '@phosphor-icons/react'
-import { CardForm } from '../components/cards/CardForm'
-import { CardsList } from '../components/cards/CardsList'
-import { Button } from '../components/ui/Button'
-import { PageHeader } from '../components/ui/PageHeader'
-import { Tabs, TabsList, TabsPanel, TabsTrigger } from '../components/ui/Tabs'
+import { CardForm } from '@/components/cards/CardForm'
+import { CardsList } from '@/components/cards/CardsList'
+import { Button } from '@/components/ui/Button'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { Tabs, TabsList, TabsPanel, TabsTrigger } from '@/components/ui/Tabs'
 import { cardsAtom } from '@/state/atoms'
 
 export function CardsPage() {

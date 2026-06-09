@@ -1,6 +1,7 @@
 import { TrashIcon } from '@phosphor-icons/react'
 import { EntityCard, type EntityCardTag } from '../ui/EntityCard'
 import { loanKindIcon } from '@/lib/icons'
+import { LOAN_KIND_TONE } from '@/lib/tones'
 import { useApp } from '@/state/AppContext'
 import type { Loan } from '@/state/atoms'
 import { LOAN_KIND_LABEL } from './constants'
@@ -33,6 +34,7 @@ export function LoanCard({ loan, onRemove, onClick }: Props) {
     <EntityCard
       onClick={onClick}
       icon={<Icon weight="duotone" className="size-5" />}
+      iconTone={LOAN_KIND_TONE[loan.kind]}
       title={loan.name}
       subtext={loan.note ? `${loan.lender} · ${loan.note}` : loan.lender}
       tags={tags}

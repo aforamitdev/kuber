@@ -6,5 +6,6 @@
     "dev": "pnpm --dir kubera dev",
     "build": "pnpm --dir kubera build",
     "tauri": "./kubera/node_modules/.bin/tauri"
-  }
+  },
+  "dependencies": {}
 }

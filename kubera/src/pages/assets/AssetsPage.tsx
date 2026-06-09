@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useAtom, useAtomValue } from 'jotai'
-import { PlusIcon } from '@phosphor-icons/react'
-import { AssetForm } from '../components/assets/AssetForm'
-import { AssetsGrid } from '../components/assets/AssetsGrid'
-import { Button } from '../components/ui/Button'
-import { PageHeader } from '../components/ui/PageHeader'
+import { BuildingsIcon, PlusIcon } from '@phosphor-icons/react'
+import { AssetForm } from '@/components/assets/AssetForm'
+import { AssetsGrid } from '@/components/assets/AssetsGrid'
+import { Button } from '@/components/ui/Button'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { TONE_CLASS } from '@/lib/tones'
 import { assetTotalAtom, assetsAtom } from '@/state/atoms'
 import { useApp } from '@/state/AppContext'
 
@@ -20,7 +21,14 @@ export function AssetsPage() {
   return (
     <>
       <PageHeader
-        title="Assets"
+        title={
+          <span className="inline-flex items-center gap-2">
+            <span className={`grid size-8 place-items-center ${TONE_CLASS.indigo}`}>
+              <BuildingsIcon className="size-4" weight="duotone" />
+            </span>
+            Assets
+          </span>
+        }
         description={`${assets.length} items · ${appreciating} appreciating · ${depreciating} depreciating · ${format(total)}`}
         actions={
           !open && (

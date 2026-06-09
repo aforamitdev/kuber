@@ -14,7 +14,11 @@ resolve:{
   alias:{
         "@": path.resolve(__dirname, "./src"),
 
-  }
+  },
+  dedupe: ["react", "react-dom"],
+},
+optimizeDeps: {
+  include: ["react", "react-dom", "react-dom/client", "@xyflow/react"],
 },
   server: {
     port: 1420,

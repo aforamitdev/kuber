@@ -1,11 +1,11 @@
-import { Greeting } from '../components/dashboard/Greeting'
-import { NetWorthPanel } from '../components/dashboard/NetWorthPanel'
-import { SplitTiles } from '../components/dashboard/SplitTiles'
-import { AllocationPanel } from '../components/dashboard/AllocationPanel'
-import { MonthlyIncomePanel } from '../components/dashboard/MonthlyIncomePanel'
-import { ExpenseInsightPanel } from '../components/dashboard/ExpenseInsightPanel'
-import { RecentActivity } from '../components/dashboard/RecentActivity'
-import { Tabs, TabsList, TabsTrigger, TabsPanel } from '../components/ui/Tabs'
+import { Greeting } from '@/components/dashboard/Greeting'
+import { NetWorthPanel } from '@/components/dashboard/NetWorthPanel'
+import { SplitTiles } from '@/components/dashboard/SplitTiles'
+import { AllocationPanel } from '@/components/dashboard/AllocationPanel'
+import { MonthlyIncomePanel } from '@/components/dashboard/MonthlyIncomePanel'
+import { ExpenseInsightPanel } from '@/components/dashboard/ExpenseInsightPanel'
+import { RecentActivity } from '@/components/dashboard/RecentActivity'
+import { Tabs, TabsList, TabsTrigger, TabsPanel } from '@/components/ui/Tabs'
 
 export function DashboardPage() {
   return (

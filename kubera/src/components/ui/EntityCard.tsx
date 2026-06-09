@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Card } from './Card'
 import { Badge, type BadgeTone } from './Badge'
+import { TONE_CLASS, type Tone } from '@/lib/tones'
 import { cn } from '@/shadeui/lib/utils'
 
 export type EntityCardTag = {
@@ -10,6 +11,7 @@ export type EntityCardTag = {
 
 type Props = {
   icon?: ReactNode
+  iconTone?: Tone
   title: ReactNode
   subtext?: ReactNode
   tags?: EntityCardTag[]
@@ -22,6 +24,7 @@ type Props = {
 
 export function EntityCard({
   icon,
+  iconTone,
   title,
   subtext,
   tags,
@@ -55,7 +58,14 @@ export function EntityCard({
     >
       <div className="flex items-start gap-3">
         {icon && (
-          <span className="grid size-10 shrink-0 place-items-center bg-muted">{icon}</span>
+          <span
+            className={cn(
+              'grid size-10 shrink-0 place-items-center',
+              iconTone ? TONE_CLASS[iconTone] : 'bg-muted',
+            )}
+          >
+            {icon}
+          </span>
         )}
         <div className="min-w-0 flex-1">
           <div className="truncate text-sm font-medium">{title}</div>

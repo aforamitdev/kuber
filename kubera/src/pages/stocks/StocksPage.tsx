@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react'
 import { useAtom } from 'jotai'
-import { PlusIcon } from '@phosphor-icons/react'
-import { MarketForm } from '../components/stocks/MarketForm'
-import { MarketNode } from '../components/stocks/MarketNode'
-import { StocksChart } from '../components/stocks/StocksChart'
-import { Button } from '../components/ui/Button'
-import { PageHeader } from '../components/ui/PageHeader'
+import { PlusIcon, TrendUpIcon } from '@phosphor-icons/react'
+import { MarketForm } from '@/components/stocks/MarketForm'
+import { MarketNode } from '@/components/stocks/MarketNode'
+import { StocksChart } from '@/components/stocks/StocksChart'
+import { Button } from '@/components/ui/Button'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { TONE_CLASS } from '@/lib/tones'
 import { marketsAtom, portfoliosAtom, type Portfolio } from '@/state/atoms'
 
 export function StocksPage() {
@@ -22,7 +23,14 @@ export function StocksPage() {
   return (
     <>
       <PageHeader
-        title="Stocks"
+        title={
+          <span className="inline-flex items-center gap-2">
+            <span className={`grid size-8 place-items-center ${TONE_CLASS.emerald}`}>
+              <TrendUpIcon className="size-4" weight="duotone" />
+            </span>
+            Stocks
+          </span>
+        }
         description="Track stocks by market and portfolio"
         actions={
           !adding && (

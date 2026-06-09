@@ -3,6 +3,7 @@ import {
   BuildingsIcon,
   ChartBarIcon,
   ChatCircleTextIcon,
+  FlowArrowIcon,
   CoinsIcon,
   CreditCardIcon,
   FilePlusIcon,
@@ -12,6 +13,7 @@ import {
   InfoIcon,
   LifebuoyIcon,
   MagnifyingGlassIcon,
+  RoadHorizonIcon,
   PiggyBankIcon,
   PlugsConnectedIcon,
   PlusIcon,
@@ -143,7 +145,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           <SidebarItem icon={<BuildingsIcon />}  label="Assets"     to="/assets" />
           <SidebarItem icon={<CoinsIcon />}      label="Income source" to="/income-sources" />
           <SidebarItem icon={<HandCoinsIcon />}  label="Loans"      to="/loans" />
-          <SidebarItem icon={<SwapIcon />}       label="Transaction" />
+          <SidebarItem icon={<SwapIcon />}       label="Transactions" to="/transactions" />
           <SidebarItem
             icon={<BellIcon />}
             label="Notifications"
@@ -173,15 +175,17 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         </Section>
 
         <Section title="Analytics">
-          <SidebarItem icon={<ChartBarIcon />}         label="Cash flow" />
+          <SidebarItem icon={<ChartBarIcon />}         label="Cash flow"  to="/cashflow" />
+          <SidebarItem icon={<FlowArrowIcon />}        label="Workflow"   to="/workflow" />
           <SidebarItem icon={<ReceiptIcon />}          label="Analytics" />
           <SidebarItem icon={<PlugsConnectedIcon />}   label="Integrations" />
         </Section>
 
         <Section title="Others">
-          <SidebarItem icon={<LifebuoyIcon />} label="Support" />
-          <SidebarItem icon={<FilePlusIcon />} label="Report" />
-          <SidebarItem icon={<InfoIcon />}     label="Help" />
+          <SidebarItem icon={<RoadHorizonIcon />} label="Roadmap" to="/roadmap" />
+          <SidebarItem icon={<LifebuoyIcon />}    label="Support" />
+          <SidebarItem icon={<FilePlusIcon />}    label="Report" />
+          <SidebarItem icon={<InfoIcon />}        label="Help" />
         </Section>
       </nav>
 

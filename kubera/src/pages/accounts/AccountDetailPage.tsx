@@ -2,11 +2,11 @@ import { useMemo, useState } from 'react'
 import { useAtom, useAtomValue } from 'jotai'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeftIcon, BankIcon } from '@phosphor-icons/react'
-import { CategoriesPanel } from '../components/accounts/CategoriesPanel'
-import { MonthlyBook } from '../components/accounts/MonthlyBook'
-import { MonthlyForm } from '../components/accounts/MonthlyForm'
-import { ChartCard } from '../components/ui/ChartCard'
-import { PageHeader } from '../components/ui/PageHeader'
+import { CategoriesPanel } from '@/components/accounts/CategoriesPanel'
+import { MonthlyBook } from '@/components/accounts/MonthlyBook'
+import { MonthlyForm } from '@/components/accounts/MonthlyForm'
+import { ChartCard } from '@/components/ui/ChartCard'
+import { PageHeader } from '@/components/ui/PageHeader'
 import {
   MONTHS,
   accountsAtom,

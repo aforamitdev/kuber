@@ -1,14 +1,15 @@
 import { useMemo, useState } from 'react'
 import { useAtom } from 'jotai'
-import { CheckIcon, TrashIcon } from '@phosphor-icons/react'
-import { Button } from '../components/ui/Button'
-import { PageHeader } from '../components/ui/PageHeader'
-import { NotificationFilters } from '../components/notifications/NotificationFilters'
-import { NotificationsList } from '../components/notifications/NotificationsList'
+import { BellIcon, CheckIcon, TrashIcon } from '@phosphor-icons/react'
+import { Button } from '@/components/ui/Button'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { TONE_CLASS } from '@/lib/tones'
+import { NotificationFilters } from '@/components/notifications/NotificationFilters'
+import { NotificationsList } from '@/components/notifications/NotificationsList'
 import {
   NOTIFICATION_FILTER_ORDER,
   type NotificationFilter,
-} from '../components/notifications/constants'
+} from '@/components/notifications/constants'
 import { notificationsAtom } from '@/state/atoms'
 
 export function NotificationsPage() {
@@ -56,7 +57,14 @@ export function NotificationsPage() {
   return (
     <>
       <PageHeader
-        title="Notifications"
+        title={
+          <span className="inline-flex items-center gap-2">
+            <span className={`grid size-8 place-items-center ${TONE_CLASS.violet}`}>
+              <BellIcon className="size-4" weight="duotone" />
+            </span>
+            Notifications
+          </span>
+        }
         description={`${notifications.length} total · ${unreadCount} unread`}
         actions={
           <>

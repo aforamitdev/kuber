@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { SparkleIcon } from '@phosphor-icons/react'
-import { Button } from '../components/ui/Button'
-import { Field, Input } from '../components/ui/Input'
+import { Button } from '@/components/ui/Button'
+import { Field, Input } from '@/components/ui/Input'
 import { TEST_ACCOUNT, accountsRegistryAtom, hashPassword, isAuthedAtom, sessionAtom } from '@/state/auth'
 
 export function LoginPage() {

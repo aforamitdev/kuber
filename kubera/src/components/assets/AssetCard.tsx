@@ -2,6 +2,7 @@ import { ArrowDownIcon, ArrowUpIcon, TrashIcon } from '@phosphor-icons/react'
 import { useNavigate } from 'react-router-dom'
 import { EntityCard, type EntityCardTag } from '../ui/EntityCard'
 import { assetKindIcon } from '@/lib/icons'
+import { ASSET_KIND_TONE } from '@/lib/tones'
 import { useApp } from '@/state/AppContext'
 import type { Asset } from '@/state/atoms'
 import { ASSET_KIND_LABEL } from './constants'
@@ -37,6 +38,7 @@ export function AssetCard({ asset, onRemove }: Props) {
   return (
     <EntityCard
       icon={<Icon weight="duotone" className="size-5" />}
+      iconTone={ASSET_KIND_TONE[asset.kind]}
       title={asset.name}
       subtext={asset.note}
       tags={tags}
